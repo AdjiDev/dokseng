@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nik Parser</title>
+        <!-- Gw pake tailwind ceeses -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script type="text/javascript" src="src/nik-parser.js"></script>
+        <script>
+            function parseNIK() {
+                const nik = document.getElementById('nikInput').value;
+                nikParse(nik, function(result) {
+                    console.log(result); // object
+                    const resultText = JSON.stringify(result, null, 2);
+                    document.getElementById('result').innerText = resultText;
+                });
+            }
+
+            function copyToClipboard() {
+                const resultText = document.getElementById('result').innerText;
+                navigator.clipboard.writeText(resultText).then(() => {
+                    alert("Data copied to clipboard!");
+                }).catch(err => {
+                    alert("Failed to copy data: " + err);
+                });
+            }
+        </script>
+    </head>
+    <body class="bg-gray-900 text-white font-sans">
+        <div class="container mx-auto p-6">
+            <h1 class="text-4xl font-extrabold text-center text-teal-400 mb-4">Nik Parser</h1>
+            <p class="text-center text-lg text-gray-400 mb-8">Made by Adjidev</p>
+
+            <div class="max-w-md mx-auto bg-gray-800 p-6 rounded-lg shadow-xl">
+                <label for="nikInput" class="block text-lg font-semibold text-gray-300 mb-2">Enter NIK:</label>
+                <input type="text" id="nikInput" placeholder="Enter NIK number" class="w-full p-3 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 mb-4"/>
+                <button onclick="parseNIK()" class="w-full py-3 bg-teal-500 text-white font-semibold rounded-md shadow-md hover:bg-teal-600 transition duration-200">Parse NIK</button>
+            </div>
+            
+            <div class="mt-8 max-w-md mx-auto bg-gray-800 p-6 rounded-lg shadow-xl">
+                <strong class="text-xl text-gray-300">Parsed NIK Data:</strong>
+                <pre id="result" class="bg-gray-900 text-white p-4 mt-4 rounded-md overflow-x-auto"></pre>
+                <button onclick="copyToClipboard()" class="mt-4 w-full py-3 bg-teal-500 text-white font-semibold rounded-md shadow-md hover:bg-teal-600 transition duration-200">Copy Result</button>
+            </div>
+        </div>
+    </body>
+</html>
