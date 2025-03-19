@@ -15,6 +15,7 @@
                     console.log(result); // object
                     const resultText = JSON.stringify(result, null, 2);
                     document.getElementById('result').innerText = resultText;
+                    document.getElementById('result').classList.add('fade-in');
                 });
             }
 
@@ -27,6 +28,31 @@
                 });
             }
         </script>
+        <style>
+            /* Animation for fading in result */
+            .fade-in {
+                animation: fadeIn 1s ease-in-out;
+            }
+
+            @keyframes fadeIn {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+
+            /* Hover effect for buttons */
+            .button-hover:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Focus animation for input fields */
+            .input-focus:focus {
+                outline: none;
+                border-color: #34d399;
+                box-shadow: 0 0 5px rgba(52, 211, 153, 0.8);
+                transform: scale(1.02);
+            }
+        </style>
     </head>
     <body class="bg-gray-900 text-green-500 font-mono flex items-center justify-center min-h-screen">
         <div class="bg-gray-800 w-full max-w-3xl rounded-lg shadow-lg border border-gray-700">
@@ -45,14 +71,14 @@
 
                 <div class="bg-gray-900 p-4 rounded-md mb-6">
                     <label for="nikInput" class="block text-lg font-semibold mb-2">Enter NIK:</label>
-                    <input type="text" id="nikInput" placeholder="Enter NIK number" class="w-full p-3 bg-gray-800 text-green-500 border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 mb-4"/>
-                    <button onclick="parseNIK()" class="w-full py-3 bg-green-500 text-black font-semibold rounded-md shadow-md hover:bg-green-600 transition duration-200">Parse NIK</button>
+                    <input type="text" id="nikInput" placeholder="Enter NIK number" class="w-full p-3 bg-gray-800 text-green-500 border border-gray-700 rounded-md shadow-sm input-focus mb-4"/>
+                    <button onclick="parseNIK()" class="w-full py-3 bg-green-500 text-black font-semibold rounded-md shadow-md button-hover transition duration-200">Parse NIK</button>
                 </div>
 
                 <div class="bg-gray-900 p-4 rounded-md">
                     <strong class="text-lg">Parsed NIK Data:</strong>
                     <pre id="result" class="bg-gray-800 text-green-500 p-4 mt-4 rounded-md overflow-x-auto"></pre>
-                    <button onclick="copyToClipboard()" class="mt-4 w-full py-3 bg-green-500 text-black font-semibold rounded-md shadow-md hover:bg-green-600 transition duration-200">Copy Result</button>
+                    <button onclick="copyToClipboard()" class="mt-4 w-full py-3 bg-green-500 text-black font-semibold rounded-md shadow-md button-hover transition duration-200">Copy Result</button>
                 </div>
             </div>
         </div>
